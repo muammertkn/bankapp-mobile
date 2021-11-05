@@ -9,29 +9,33 @@ class HomePage extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: MainNavigationBar(),
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            IconButton(
-              icon: Icon(
-                Icons.menu,
-                size: 36,
-              ),
-              onPressed: () => print("hello world!"),
-            ),
-            Icon(
-              Icons.savings,
-              size: 36,
-            ),
-            Icon(
-              Icons.logout,
-              size: 36,
-            ),
-          ],
-        ),
-      ),
+      appBar: customAppBar(),
     ));
   }
+}
+
+AppBar customAppBar() {
+  return AppBar(
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        IconButton(
+          icon: Icon(
+            Icons.menu,
+            size: 36,
+          ),
+          onPressed: () => print("hello world!"),
+        ),
+        Icon(
+          Icons.savings,
+          size: 36,
+        ),
+        Icon(
+          Icons.logout,
+          size: 36,
+        ),
+      ],
+    ),
+  );
 }

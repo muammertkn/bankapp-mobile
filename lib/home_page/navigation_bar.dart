@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/main.dart';
 
 class MainNavigationBar extends StatelessWidget {
   const MainNavigationBar({
@@ -7,21 +8,25 @@ class MainNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: [
-        BottomNavigationBarItem(
-          label: '',
-          icon: Icon(Icons.bar_chart),
-        ),
-        BottomNavigationBarItem(
-          label: '',
-          icon: Icon(Icons.account_balance),
-        ),
-        BottomNavigationBarItem(
-          label: '',
-          icon: Icon(Icons.receipt_long),
-        ),
-      ],
+    return Container(
+      color: ThemeProvider.theme.primaryColor,
+      child: BottomNavigationBar(
+        items: [
+          customNavigationBarItem(Icons.bar_chart, 'Graphs'),
+          customNavigationBarItem(Icons.account_balance, 'Home'),
+          customNavigationBarItem(Icons.receipt_long, 'Transactions'),
+        ],
+      ),
     );
   }
+}
+
+BottomNavigationBarItem customNavigationBarItem(
+    IconData iconData, String label) {
+  return BottomNavigationBarItem(
+    icon: Icon(
+      iconData,
+    ),
+    label: label,
+  );
 }
