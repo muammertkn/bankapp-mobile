@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/Register-Pages/optionalPage.dart';
-import 'package:mobile_app/Register-Pages/signInPage.dart';
-import 'package:mobile_app/Register-Pages/signUpPage.dart';
-import 'package:mobile_app/home_page/home_page.dart';
 import 'package:get/get.dart';
+import 'package:mobile_app/Page-Navigation/pageNavigation.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OptionalDetailsPage(),
+      home: PageNavigation(),
       theme: ThemeProvider.theme,
     );
   }
