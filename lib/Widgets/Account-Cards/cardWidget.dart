@@ -12,10 +12,11 @@ class CardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: Container(
         decoration: BoxDecoration(
+          border: Border.all(width: 2, color: Colors.black),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 7,
+              spreadRadius: 4,
               blurRadius: 10,
               offset: Offset(3, 5),
             ),

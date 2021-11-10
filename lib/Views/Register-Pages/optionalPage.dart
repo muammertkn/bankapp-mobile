@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_app/Register-Pages/signInPage.dart';
-import 'package:mobile_app/Register-Pages/signUpPage.dart';
+import 'package:mobile_app/Views/Page-Navigation/pageNavigation.dart';
+import 'package:mobile_app/Views/Register-Pages/signUpPage.dart';
 
 class OptionalDetailsPage extends StatefulWidget {
   const OptionalDetailsPage({Key? key}) : super(key: key);
@@ -148,7 +148,7 @@ below:
                         ),
                         MaterialButton(
                           onPressed: () {
-                            //route: Page-Navigation
+                            Get.to(PageNavigation());
                           },
                           child: Text(
                             'Sign Up',

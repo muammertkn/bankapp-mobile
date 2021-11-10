@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:mobile_app/Account-Cards/cardWidget.dart';
+import 'package:mobile_app/Widgets/Account-Cards/cardWidget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -85,6 +85,7 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               color: Colors.white,
               child: SingleChildScrollView(
+                //! Scroll Stepper...
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
