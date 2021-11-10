@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app/Home-Page/homePage.dart';
-import 'package:mobile_app/Register-Pages/signInPage.dart';
+import 'package:mobile_app/Views/Home-Page/homePage.dart';
+import 'package:mobile_app/Views/Transactions-Page/transactionsPage.dart';
 
 //! change widget name
 class PageNavigation extends StatefulWidget {
@@ -18,7 +18,7 @@ class _PageNavigationState extends State<PageNavigation> {
     super.initState();
   }
 
-  final _pageOptions = [HomePage(), SignInPage()];
+  final _pageOptions = [HomePage(), TransactionsPage()];
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_app/Register-Pages/optionalPage.dart';
-import 'package:mobile_app/Register-Pages/signInPage.dart';
+import 'package:mobile_app/Views/Register-Pages/optionalPage.dart';
+import 'package:mobile_app/Views/Register-Pages/signInPage.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);

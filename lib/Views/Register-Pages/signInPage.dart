@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_app/Register-Pages/signUpPage.dart';
+import 'package:mobile_app/Views/Page-Navigation/pageNavigation.dart';
+import 'package:mobile_app/Views/Register-Pages/signUpPage.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -91,7 +92,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     MaterialButton(
                       onPressed: () {
-                        // route: Page-Navigation
+                        Get.to(PageNavigation());
                       },
                       child: Text(
                         'Sign In',
