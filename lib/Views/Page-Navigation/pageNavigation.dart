@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/Views/Home-Page/homePage.dart';
 import 'package:mobile_app/Views/Transactions-Page/transactionsPage.dart';
+import 'package:mobile_app/Views/Transfer-Page/transferPage.dart';
 
 //! change widget name
 class PageNavigation extends StatefulWidget {
@@ -18,7 +19,7 @@ class _PageNavigationState extends State<PageNavigation> {
     super.initState();
   }
 
-  final _pageOptions = [HomePage(), TransactionsPage()];
+  final _pageOptions = [HomePage(), TransactionsPage(), TransferPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +59,13 @@ class _PageNavigationState extends State<PageNavigation> {
                   size: 25,
                 ),
                 label: 'Graph'),
+            BottomNavigationBarItem(
+                tooltip: 'Transfer',
+                icon: Icon(
+                  Icons.attach_money_sharp,
+                  size: 25,
+                ),
+                label: 'Transfer'),
           ],
         ),
       ),
