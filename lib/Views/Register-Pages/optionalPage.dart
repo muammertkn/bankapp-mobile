@@ -118,6 +118,7 @@ class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
                                             padding: EdgeInsets.all(15),
                                           ),
                                           Text(
+                                              // ignore: prefer_single_quotes
                                               """I, the can’t-possibly-know-any-better end user who 
 probably just accepted this without even reading it, do 
 hereby acknowledge that I’ve read and accepted the 
@@ -183,6 +184,5 @@ below:
         ),
       ),
     );
-    ;
   }
 }

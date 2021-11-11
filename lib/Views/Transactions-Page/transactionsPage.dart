@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:mobile_app/Models/transactionModel.dart';
 import 'package:mobile_app/Widgets/Charts/transactionChart.dart';
 import 'package:mobile_app/Widgets/Transaction-Cards/transactionCardWidget.dart';
-import 'package:mobile_app/Widgets/appbarWidget.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 
@@ -43,7 +42,6 @@ class _TransactionsPageState extends State<TransactionsPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
-        appBar: AppbarWidget.appBar(),
         body: Padding(
           padding: const EdgeInsets.only(
             top: 12,

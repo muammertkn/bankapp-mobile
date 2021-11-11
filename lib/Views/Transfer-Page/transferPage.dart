@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mobile_app/Widgets/appbarWidget.dart';
 
 class TransferPage extends StatefulWidget {
   const TransferPage({Key? key}) : super(key: key);
@@ -20,7 +19,6 @@ class _TransferPageState extends State<TransferPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        appBar: AppbarWidget.appBarWithText(),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -41,13 +39,15 @@ class _TransferPageState extends State<TransferPage> {
                           right: 20,
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Send Money',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 25.0),
+                                  color: Colors.indigo,
+                                  letterSpacing: 3,
+                                  fontSize: 30.0),
                             ),
                           ],
                         ),
@@ -203,6 +203,7 @@ class _TransferPageState extends State<TransferPage> {
                         alignment: Alignment.topRight,
                         child: ElevatedButton(
                           onPressed: () {
+                            // ignore: avoid_print
                             print('sending money');
                           },
                           child: Text(
