@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_app/Views/Register-Pages/signInPage.dart';
 
 import 'Views/Page-Navigation/pageNavigation.dart';
 
