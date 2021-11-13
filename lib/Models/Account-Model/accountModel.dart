@@ -3,10 +3,12 @@ import 'package:mobile_app/Models/Transaction-Model/transactionModel.dart';
 class Accounts {
   final String? id;
   final String? label;
-  final String? balance;
+  final String? currency;
+  final String? balance; //! replace with double.
   final List<Transactions>? transactions;
 
-  Accounts({this.id, this.label, this.balance, this.transactions});
+  Accounts(
+      {this.id, this.label, this.currency, this.balance, this.transactions});
 
   factory Accounts.fromJson(Map<String, dynamic> json) {
     return Accounts(
