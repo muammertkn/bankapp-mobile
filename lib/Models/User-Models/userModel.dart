@@ -7,7 +7,7 @@ class Users {
   final String password;
   final String? birthDate;
   final String? phoneNumber;
-  final Accounts? accounts;
+  final List<Accounts>? accounts;
 
   Users(
       {required this.id,
@@ -26,8 +26,11 @@ class Users {
       password: json['password'],
       birthDate: json['birtDate'],
       phoneNumber: json['phoneNumber'],
-      accounts:
-          json['accounts'] != null ? Accounts.fromJson(json['accounts']) : null,
+      accounts: json['accounts'] != null
+          ? List.from(json['accounts'])
+              .map((e) => Accounts.fromJson(e))
+              .toList()
+          : null,
     );
   }
 

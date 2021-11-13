@@ -5,7 +5,7 @@ class Transactions {
   final int? amount;
   final String? date;
   final String? id;
-  final OtherPerson? otherPerson;
+  final List<OtherPerson>? otherPerson;
 
   Transactions(
       {this.action, this.amount, this.date, this.id, this.otherPerson});
@@ -17,7 +17,9 @@ class Transactions {
         amount: json['amount'],
         date: json['date'],
         otherPerson: json['otherPerson'] != null
-            ? OtherPerson.fromJson(json['otherPerson'])
+            ? List.from(json['otherPerson'])
+                .map((e) => OtherPerson.fromJson(e))
+                .toList()
             : null);
   }
 

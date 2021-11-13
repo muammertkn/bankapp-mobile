@@ -4,7 +4,7 @@ class Accounts {
   final String? id;
   final String? label;
   final String? balance;
-  final Transactions? transactions;
+  final List<Transactions>? transactions;
 
   Accounts({this.id, this.label, this.balance, this.transactions});
 
@@ -14,7 +14,9 @@ class Accounts {
       label: json['label'],
       balance: json['balance'],
       transactions: json['transactions'] != null
-          ? Transactions.fromJson(json['transactions'])
+          ? List.from(json['transactions'])
+              .map((e) => Transactions.fromJson(e))
+              .toList()
           : null,
     );
   }
