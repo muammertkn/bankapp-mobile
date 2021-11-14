@@ -1,7 +1,7 @@
 import 'package:mobile_app/Models/User-Models/otherPersonModel.dart';
 
 class Transactions {
-  final String? action;
+  final String? action; //! replace with 'SENT' and 'GOT'
   final int? amount;
   final String? date;
   final String? id;
