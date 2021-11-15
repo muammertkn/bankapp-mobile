@@ -15,6 +15,7 @@ class Accounts {
       id: json['id'],
       label: json['label'],
       balance: json['balance'],
+      currency: json['currency'],
       transactions: json['transactions'] != null
           ? List.from(json['transactions'])
               .map((e) => Transactions.fromJson(e))
@@ -27,6 +28,7 @@ class Accounts {
         'id': id,
         'label': label,
         'balance': balance,
+        'currency' : currency,
         'transactions': transactions,
       };
 }
