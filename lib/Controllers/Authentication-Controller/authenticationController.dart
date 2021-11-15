@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile_app/Controllers/Token-Controllers/customhttpClient.dart';
 
 class Authentication {
   String url = 'http://bankapp.aziznal.com:3000/';
-
+  var httpClient = CustomHttpClient();
+  final storage = FlutterSecureStorage();
   Future<bool> signUp(
       String fullname, String email, String password, String confirmPassword,
       [String? birthDate, String? phoneNumber]) async {
@@ -21,8 +24,12 @@ class Authentication {
       }),
     );
     if (signUpResponse.statusCode == 201) {
-      //! add token to memory (via FlutterStorage or GetStorage)
-      return true;
+      final loginResponse = await signIn(email, password);
+      if (loginResponse == true) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
@@ -39,7 +46,7 @@ class Authentication {
       ),
     );
     if (signInResponse.statusCode == 201) {
-      //! Add user token to memory(via Flutter or GetStorage)
+      await storage.write(key: 'access_token', value: signInResponse.body);
       return true;
     } else {
       return false;
@@ -48,7 +55,7 @@ class Authentication {
 
   Future<bool> logOut() async {
     try {
-      /* await storage.delete(key: 'access_token'); */
+      await storage.delete(key: 'access_token');
       return true;
     } catch (e) {
       return false;
