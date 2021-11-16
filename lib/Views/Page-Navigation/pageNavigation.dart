@@ -19,7 +19,7 @@ class _PageNavigationState extends State<PageNavigation> {
     super.initState();
   }
 
-  final _pageOptions = [HomePage(), TransactionsPage(), TransferPage()];
+  final _pageOptions = [TransactionsPage(), HomePage(), TransferPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -46,19 +46,19 @@ class _PageNavigationState extends State<PageNavigation> {
           },
           items: [
             BottomNavigationBarItem(
-                tooltip: 'Home',
-                icon: Icon(
-                  Icons.account_balance,
-                  size: 25,
-                ),
-                label: 'Home'),
-            BottomNavigationBarItem(
                 tooltip: 'Graph',
                 icon: Icon(
                   Icons.bar_chart,
                   size: 25,
                 ),
                 label: 'Graph'),
+            BottomNavigationBarItem(
+                tooltip: 'Home',
+                icon: Icon(
+                  Icons.account_balance,
+                  size: 25,
+                ),
+                label: 'Home'),
             BottomNavigationBarItem(
                 tooltip: 'Transfer',
                 icon: Icon(
