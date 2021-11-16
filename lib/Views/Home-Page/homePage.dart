@@ -11,6 +11,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Widget> children = [
+    CardWidget(accountNo: '123-456-789', balance: '1.000.000'),
+    CardWidget(accountNo: '321-654-987', balance: '10.000.000'),
+    CardWidget(accountNo: '000-456-000', balance: '100.000.000'),
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -88,19 +93,11 @@ class _HomePageState extends State<HomePage> {
                 height: 279,
                 width: double.infinity,
                 color: Colors.white,
-                child: SingleChildScrollView(
-                  //! Scroll Stepper...
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CardWidget(
-                          accountNo: '123-456-789', balance: '1.000.000'),
-                      CardWidget(
-                          accountNo: '321-654-987', balance: '10.000.000'),
-                      CardWidget(
-                          accountNo: '000-456-000', balance: '100.000.000'),
-                    ],
-                  ),
+                  physics: const PageScrollPhysics(), // this for snapping
+                  itemCount: children.length,
+                  itemBuilder: (_, index) => children[index],
                 ),
               ),
             ],
