@@ -13,7 +13,7 @@ class PageNavigation extends StatefulWidget {
 }
 
 class _PageNavigationState extends State<PageNavigation> {
-  int selectedPage = 0;
+  int selectedPage = 1;
   @override
   void initState() {
     super.initState();
