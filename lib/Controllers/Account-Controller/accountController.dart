@@ -6,6 +6,7 @@ class AccountController {
   String addUrl = 'http://bankapp.aziznal.com:3000/add';
   String editUrl = 'http://bankapp.aziznal.com:3000/edit';
   String deleteUrl = 'http://bankapp.aziznal.com:3000/delete';
+  String sendMoneyUrl = 'http://bankapp.aziznal.com:3000/delete';
 
   Future<bool> addAccount(Accounts accounts) async {
     final addAccountResponse = await http.post(
@@ -64,6 +65,27 @@ class AccountController {
       body: jsonEncode(
         <String, String?>{
           'id': accounts.id,
+        },
+      ),
+    );
+    if (addAccountResponse.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> sendMoney(String accountId, accountNo, amount) async {
+    final addAccountResponse = await http.post(
+      Uri.parse(sendMoneyUrl),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: jsonEncode(
+        <String, String?>{
+          'accountId': accountId,
+          'accountNo': accountNo,
+          'amount': amount
         },
       ),
     );
