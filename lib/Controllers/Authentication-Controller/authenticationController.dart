@@ -2,15 +2,17 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobile_app/Controllers/Token-Controllers/customhttpClient.dart';
+import 'package:mobile_app/Utils/endpoints.dart';
 
 class Authentication {
-  String url = 'http://bankapp.aziznal.com:3000/';
+  String signUpUrl = Endpoints.signUp;
+  String signInUrl = Endpoints.signIn;
   var httpClient = CustomHttpClient();
   final storage = FlutterSecureStorage();
   Future<bool> signUp(String fullname, String email, String password,
       [String? birthDate, String? phoneNumber]) async {
     final signUpResponse = await http.post(
-      Uri.parse(url),
+      Uri.parse(signUpUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -36,7 +38,7 @@ class Authentication {
 
   Future<bool> signIn(String email, String password) async {
     final signInResponse = await http.post(
-      Uri.parse(url),
+      Uri.parse(signInUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
