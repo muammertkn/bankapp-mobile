@@ -7,8 +7,7 @@ class Authentication {
   String url = 'http://bankapp.aziznal.com:3000/';
   var httpClient = CustomHttpClient();
   final storage = FlutterSecureStorage();
-  Future<bool> signUp(
-      String fullname, String email, String password, String confirmPassword,
+  Future<bool> signUp(String fullname, String email, String password,
       [String? birthDate, String? phoneNumber]) async {
     final signUpResponse = await http.post(
       Uri.parse(url),

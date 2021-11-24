@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_app/Controllers/Authentication-Controller/authenticationController.dart';
 import 'package:mobile_app/Views/Page-Navigation/pageNavigation.dart';
 import 'package:mobile_app/Views/Register-Pages/signUpPage.dart';
 
@@ -12,6 +13,9 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  Authentication controller = Get.put(Authentication());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,6 +55,10 @@ class _SignInPageState extends State<SignInPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextFormField(
+                      controller: emailController,
+                      onFieldSubmitted: (value) {
+                        emailController.text = value;
+                      },
                       decoration: InputDecoration(
                         labelText: 'E-mail',
                         hintStyle: TextStyle(
@@ -71,6 +79,11 @@ class _SignInPageState extends State<SignInPage> {
                       height: 40,
                     ),
                     TextFormField(
+                      obscureText: true,
+                      controller: passwordController,
+                      onFieldSubmitted: (value) {
+                        passwordController.text = value;
+                      },
                       decoration: InputDecoration(
                         labelText: 'Password',
                         hintStyle: TextStyle(
@@ -91,8 +104,14 @@ class _SignInPageState extends State<SignInPage> {
                       height: 30,
                     ),
                     MaterialButton(
-                      onPressed: () {
-                        Get.to(PageNavigation());
+                      onPressed: () async {
+                        if (await controller.signIn(emailController.text,
+                                passwordController.text) ==
+                            true) {
+                          Get.to(PageNavigation());
+                        } else {
+                          Get.snackbar('ERROR', 'Something went wrong!');
+                        }
                       },
                       child: Text(
                         'Sign In',
@@ -109,33 +128,34 @@ class _SignInPageState extends State<SignInPage> {
             Padding(
               padding: EdgeInsets.only(top: 110),
               child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don't have an account yet?",
+                height: 50,
+                width: double.infinity,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account yet?",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(SignUpPage());
+                      },
+                      child: Text(
+                        'SIGN UP!',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.indigo,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Get.to(SignUpPage());
-                        },
-                        child: Text(
-                          'SIGN UP!',
-                          style: TextStyle(
-                              color: Colors.indigo,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  )),
+                    )
+                  ],
+                ),
+              ),
             )
           ],
         ),

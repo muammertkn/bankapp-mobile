@@ -11,137 +11,161 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            Container(
-              height: 240,
-              width: double.infinity,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.savings,
-                    color: Colors.indigo,
-                    size: 180,
-                  ),
-                  Text(
-                    'VERPARA',
-                    style: TextStyle(
-                        color: Colors.indigo,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 440,
-              width: double.infinity,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 240,
+                width: double.infinity,
+                color: Colors.white,
+                child: Row(
                   children: [
-                    Wrap(
-                      runSpacing: 25,
-                      alignment: WrapAlignment.center,
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Full name',
-                            hintStyle: TextStyle(
-                              color: Colors.grey[600],
-                            ),
-                            hintText: 'Full name',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.indigo, width: 1),
-                            ),
-                          ),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'E-mail',
-                            hintStyle: TextStyle(
-                              color: Colors.grey[600],
-                            ),
-                            hintText: 'E-mail',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.indigo, width: 1),
-                            ),
-                          ),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            hintStyle: TextStyle(
-                              color: Colors.grey[600],
-                            ),
-                            hintText: 'Password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.indigo, width: 1),
-                            ),
-                          ),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Confirm Password',
-                            hintStyle: TextStyle(
-                              color: Colors.grey[600],
-                            ),
-                            hintText: 'Confirm Password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.indigo, width: 1),
-                            ),
-                          ),
-                        ),
-                        MaterialButton(
-                          onPressed: () {
-                            Get.to(OptionalDetailsPage());
-                          },
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                                color: Colors.indigo,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    )
+                    Icon(
+                      Icons.savings,
+                      color: Colors.indigo,
+                      size: 180,
+                    ),
+                    Text(
+                      'VERPARA',
+                      style: TextStyle(
+                          color: Colors.indigo,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 5),
-              child: Container(
+              Container(
+                height: 440,
+                width: double.infinity,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Wrap(
+                        runSpacing: 25,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          TextFormField(
+                            controller: nameController,
+                            onFieldSubmitted: (value) {
+                              nameController.text = value;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Full name',
+                              hintStyle: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                              hintText: 'Full name',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide:
+                                    BorderSide(color: Colors.indigo, width: 1),
+                              ),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: emailController,
+                            onFieldSubmitted: (value) {
+                              emailController.text = value;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'E-mail',
+                              hintStyle: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                              hintText: 'E-mail',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide:
+                                    BorderSide(color: Colors.indigo, width: 1),
+                              ),
+                            ),
+                          ),
+                          TextFormField(
+                            obscureText: true,
+                            controller: passwordController,
+                            onFieldSubmitted: (value) {
+                              passwordController.text = value;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              hintStyle: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                              hintText: 'Password',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide:
+                                    BorderSide(color: Colors.indigo, width: 1),
+                              ),
+                            ),
+                          ),
+                          TextFormField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              labelText: 'Confirm Password',
+                              hintStyle: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                              hintText: 'Confirm Password',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide:
+                                    BorderSide(color: Colors.indigo, width: 1),
+                              ),
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: () {
+                              Get.to(
+                                OptionalDetailsPage(),
+                                arguments: [
+                                  nameController.text,
+                                  emailController.text,
+                                  passwordController.text
+                                ],
+                              );
+                            },
+                            child: Text(
+                              'Next',
+                              style: TextStyle(
+                                  color: Colors.indigo,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 5),
+                child: Container(
                   height: 50,
                   width: double.infinity,
                   color: Colors.white,
@@ -168,9 +192,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       )
                     ],
-                  )),
-            )
-          ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
