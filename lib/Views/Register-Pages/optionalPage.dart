@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_app/Controllers/Authentication-Controller/authenticationController.dart';
 import 'package:mobile_app/Views/Page-Navigation/pageNavigation.dart';
 import 'package:mobile_app/Views/Register-Pages/signUpPage.dart';
 
@@ -14,6 +15,10 @@ class OptionalDetailsPage extends StatefulWidget {
 class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController birthDateController = TextEditingController();
+    TextEditingController phoneNumberController = TextEditingController();
+    Authentication controller = Get.find();
+
     bool? isAccept = false;
     return SafeArea(
       child: Scaffold(
@@ -57,6 +62,10 @@ class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
                       children: [
                         //! Change to date input type
                         TextFormField(
+                          controller: birthDateController,
+                          onFieldSubmitted: (value) {
+                            birthDateController.text = value;
+                          },
                           decoration: InputDecoration(
                             labelText: 'Birthdate',
                             hintStyle: TextStyle(
@@ -75,6 +84,10 @@ class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
                         ),
                         //! Change to number input type
                         TextFormField(
+                          controller: phoneNumberController,
+                          onFieldSubmitted: (value) {
+                            phoneNumberController.text = value;
+                          },
                           decoration: InputDecoration(
                             labelText: 'Phone Number',
                             hintStyle: TextStyle(
@@ -96,7 +109,7 @@ class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
                           value: isAccept,
                           onChanged: (value) {
                             setState(() {
-                              isAccept = value;
+                              isAccept = value!;
                             });
                           },
                           title: Text.rich(
@@ -148,8 +161,19 @@ below:
                           ),
                         ),
                         MaterialButton(
-                          onPressed: () {
-                            Get.to(PageNavigation());
+                          onPressed: () async {
+                            if (await controller.signUp(
+                                  Get.arguments[0],
+                                  Get.arguments[1],
+                                  Get.arguments[2],
+                                  birthDateController.text,
+                                  phoneNumberController.text,
+                                ) ==
+                                true) {
+                              Get.to(PageNavigation());
+                            } else {
+                              Get.snackbar('ERROR', 'Something went wrong!');
+                            }
                           },
                           child: Text(
                             'Sign Up',
@@ -166,7 +190,9 @@ below:
                     ),
                     MaterialButton(
                       onPressed: () {
-                        Get.to(SignUpPage());
+                        Get.to(
+                          SignUpPage(),
+                        );
                       },
                       child: Text(
                         'Back',
