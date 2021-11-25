@@ -11,7 +11,7 @@ class Authentication {
   final storage = FlutterSecureStorage();
   Future<bool> signUp(String fullname, String email, String password,
       [String? birthDate, String? phoneNumber]) async {
-    final signUpResponse = await http.post(
+    final signUpResponse = await httpClient.post(
       Uri.parse(signUpUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -37,7 +37,7 @@ class Authentication {
   }
 
   Future<bool> signIn(String email, String password) async {
-    final signInResponse = await http.post(
+    final signInResponse = await httpClient.post(
       Uri.parse(signInUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -47,7 +47,10 @@ class Authentication {
       ),
     );
     if (signInResponse.statusCode == 201) {
-      await storage.write(key: 'access_token', value: signInResponse.body);
+      print(signInResponse.body);
+      var parsedAccessToken = json.decode(signInResponse.body);
+      await storage.write(
+          key: 'access_token', value: parsedAccessToken['access_token']);
       return true;
     } else {
       return false;
