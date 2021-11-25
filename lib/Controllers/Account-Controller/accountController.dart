@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:mobile_app/Controllers/Token-Controllers/customhttpClient.dart';
 import 'package:mobile_app/Models/Account-Model/accountModel.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile_app/Models/Transaction-Model/transactionModel.dart';
 import 'package:mobile_app/Models/User-Models/userModel.dart';
+import 'package:mobile_app/Models/transactionModel.dart';
 import 'package:mobile_app/Utils/endpoints.dart';
 
 class AccountController {
@@ -18,6 +20,26 @@ class AccountController {
     if (rawUser.statusCode == 200) {
       var userJson = json.decode(rawUser.body);
       return User.fromJson(userJson);
+    } else {
+      throw Exception('Error!');
+    }
+  }
+
+  Future<List<Transactions>> getTransactions() async {
+    String url = Endpoints.getTransactions;
+    final rawTransactions = await httpClient.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (rawTransactions.statusCode == 200) {
+      List<Transactions> transactions =
+          (json.decode(rawTransactions.body) as List)
+              .map((e) => Transactions.fromJson(e))
+              .toList();
+      print(transactions);
+      return transactions;
     } else {
       throw Exception('Error!');
     }

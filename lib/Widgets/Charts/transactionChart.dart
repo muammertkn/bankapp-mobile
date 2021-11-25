@@ -2,22 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/Models/transactionModel.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class TransactionChartWidget extends StatelessWidget {
-  final List<Transactions> transactions;
+class TransactionChartWidget extends StatefulWidget {
+  final List<TransactionBar> transactions;
   const TransactionChartWidget({Key? key, required this.transactions})
       : super(key: key);
 
   @override
+  State<TransactionChartWidget> createState() => _TransactionChartWidgetState();
+}
+
+class _TransactionChartWidgetState extends State<TransactionChartWidget> {
+  @override
   Widget build(BuildContext context) {
-    List<charts.Series<Transactions, String>> series = [
+    List<charts.Series<TransactionBar, String>> series = [
       charts.Series(
-        id: 'Transactions',
-        data: transactions,
-        domainFn: (Transactions transactions, _) =>
+        id: 'TransactionBar',
+        data: widget.transactions,
+        domainFn: (TransactionBar transactions, _) =>
             transactions.transactionDate,
-        measureFn: (Transactions transactions, _) =>
+        measureFn: (TransactionBar transactions, _) =>
             transactions.transactionAmount,
-        colorFn: (Transactions transactions, _) => transactions.barColor,
+        colorFn: (TransactionBar transactions, _) => transactions.barColor,
       ),
     ];
 
