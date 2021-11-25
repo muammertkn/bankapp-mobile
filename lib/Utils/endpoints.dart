@@ -3,6 +3,7 @@ class Endpoints {
   static String signIn = baseUrl + 'auth/login';
   static String signUp = baseUrl + 'auth/register';
   static String verify = baseUrl + 'auth/verify';
+  static String getFullUserData = baseUrl + 'u/';
   static String updateUser = baseUrl + 'u/update-user';
   static String getAccounts = baseUrl + 'u/accounts';
   static String getTransactions = baseUrl + 'u/transactions';

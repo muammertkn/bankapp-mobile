@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top]);
+    /* SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.top]); */
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PageNavigation(),
+      home: SignInPage(),
       theme: ThemeProvider.theme,
     );
   }

@@ -2,10 +2,10 @@ import 'package:mobile_app/Models/User-Models/otherPersonModel.dart';
 
 class Transactions {
   final String? action; //! replace with 'SENT' and 'GOT'
-  final int? amount;
+  final dynamic amount;
   final String? date;
   final String? id;
-  final List<OtherPerson>? otherPerson;
+  final OtherPerson? otherPerson;
 
   Transactions(
       {this.action, this.amount, this.date, this.id, this.otherPerson});
@@ -17,9 +17,7 @@ class Transactions {
         amount: json['amount'],
         date: json['date'],
         otherPerson: json['otherPerson'] != null
-            ? List.from(json['otherPerson'])
-                .map((e) => OtherPerson.fromJson(e))
-                .toList()
+            ? OtherPerson.fromJson(json['otherPerson'])
             : null);
   }
 

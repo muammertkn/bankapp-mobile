@@ -1,21 +1,19 @@
 import 'package:mobile_app/Models/Transaction-Model/transactionModel.dart';
 
-class Accounts {
+class BankingAccount {
   final String? id;
-  final String? label;
-  final String? currency;
-  final String? balance; //! replace with double.
+  String label;
+  double balance = 0.0; //! replace with double.
   final List<Transactions>? transactions;
 
-  Accounts(
-      {this.id, this.label, this.currency, this.balance, this.transactions});
+  BankingAccount(
+      {this.id, required this.label, required this.balance, this.transactions});
 
-  factory Accounts.fromJson(Map<String, dynamic> json) {
-    return Accounts(
+  factory BankingAccount.fromJson(Map<String, dynamic> json) {
+    return BankingAccount(
       id: json['id'],
       label: json['label'],
-      balance: json['balance'],
-      currency: json['currency'],
+      balance: json['balance'].toDouble(),
       transactions: json['transactions'] != null
           ? List.from(json['transactions'])
               .map((e) => Transactions.fromJson(e))
@@ -28,7 +26,6 @@ class Accounts {
         'id': id,
         'label': label,
         'balance': balance,
-        'currency' : currency,
         'transactions': transactions,
       };
 }
