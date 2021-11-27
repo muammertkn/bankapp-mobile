@@ -62,7 +62,7 @@ class _PageNavigationState extends State<PageNavigation> {
             BottomNavigationBarItem(
                 tooltip: 'Transfer',
                 icon: Icon(
-                  Icons.attach_money_sharp,
+                  Icons.send_and_archive,
                   size: 25,
                 ),
                 label: 'Transfer'),

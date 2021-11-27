@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// This is a custom theme
 class ThemeProvider {
   const ThemeProvider();
 
