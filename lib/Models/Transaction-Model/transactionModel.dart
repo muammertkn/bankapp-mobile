@@ -14,7 +14,7 @@ class Transactions {
     return Transactions(
         id: json['id'],
         action: json['action'],
-        amount: json['amount'],
+        amount: json['amount'].toDouble(),
         date: json['date'],
         otherPerson: json['otherPerson'] != null
             ? OtherPerson.fromJson(json['otherPerson'])
