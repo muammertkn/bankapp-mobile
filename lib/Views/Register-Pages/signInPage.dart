@@ -22,142 +22,145 @@ class _SignInPageState extends State<SignInPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            Container(
-              height: 240,
-              width: double.infinity,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.savings,
-                    color: Colors.indigo,
-                    size: 180,
-                  ),
-                  Text(
-                    'VERPARA',
-                    style: TextStyle(
-                        color: Colors.indigo,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 320,
-              width: double.infinity,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: 240,
+                width: double.infinity,
+                color: Colors.white,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextFormField(
-                      controller: emailController,
-                      onFieldSubmitted: (value) {
-                        emailController.text = value;
-                      },
-                      decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        hintStyle: TextStyle(
-                          color: Colors.grey[600],
-                        ),
-                        hintText: 'E-mail',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                              BorderSide(color: Colors.indigo, width: 1),
-                        ),
-                      ),
+                    Icon(
+                      Icons.savings,
+                      color: Colors.indigo,
+                      size: 180,
                     ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      controller: passwordController,
-                      onFieldSubmitted: (value) {
-                        passwordController.text = value;
-                      },
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        hintStyle: TextStyle(
-                          color: Colors.grey[600],
-                        ),
-                        hintText: 'Password',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                              BorderSide(color: Colors.indigo, width: 1),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    MaterialButton(
-                      onPressed: () async {
-                        if (await controller.signIn(emailController.text,
-                                passwordController.text) ==
-                            true) {
-                          Get.to(PageNavigation());
-                        } else {
-                          Get.snackbar('ERROR', 'Something went wrong!');
-                        }
-                      },
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                            color: Colors.indigo,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold),
-                      ),
+                    Text(
+                      'FakeBank',
+                      style: TextStyle(
+                          color: Colors.indigo,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 110),
-              child: Container(
-                height: 50,
+              Container(
+                height: 320,
                 width: double.infinity,
                 color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't have an account yet?",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Get.to(SignUpPage());
-                      },
-                      child: Text(
-                        'SIGN UP!',
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextFormField(
+                        controller: emailController,
+                        onFieldSubmitted: (value) {
+                          emailController.text = value;
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          hintStyle: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                          hintText: 'E-mail',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide:
+                                BorderSide(color: Colors.indigo, width: 1),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        controller: passwordController,
+                        onFieldSubmitted: (value) {
+                          passwordController.text = value;
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          hintStyle: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                          hintText: 'Password',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide:
+                                BorderSide(color: Colors.indigo, width: 1),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      MaterialButton(
+                        onPressed: () async {
+                          if (await controller.signIn(emailController.text,
+                                  passwordController.text) ==
+                              true) {
+                            Get.to(PageNavigation());
+                          } else {
+                            Get.snackbar('ERROR', 'Something went wrong!');
+                          }
+                        },
+                        child: Text(
+                          'Sign In',
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 110),
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account yet?",
                         style: TextStyle(
-                            color: Colors.indigo,
+                            color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-                    )
-                  ],
+                      TextButton(
+                        onPressed: () {
+                          Get.to(SignUpPage());
+                        },
+                        child: Text(
+                          'SIGN UP!',
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

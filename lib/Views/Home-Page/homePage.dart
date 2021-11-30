@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobile_app/Controllers/Account-Controller/accountController.dart';
 import 'package:mobile_app/Controllers/Authentication-Controller/authenticationController.dart';
 import 'package:mobile_app/Models/User-Models/userModel.dart';
+import 'package:mobile_app/Views/Settings-Page/settingsPage.dart';
 import 'package:mobile_app/Widgets/Account-Cards/cardWidget.dart';
 
 class HomePage extends StatefulWidget {
@@ -91,7 +92,11 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          print('add settings page');
+                          Get.to(
+                            SettingsPage(
+                              user: user!,
+                            ),
+                          );
                         },
                         icon: Icon(Icons.settings),
                         color: Colors.indigo,
@@ -170,16 +175,21 @@ class _HomePageState extends State<HomePage> {
                   height: 279,
                   width: double.infinity,
                   color: Colors.white,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    physics: const PageScrollPhysics(), // this for snapping
-                    itemCount: user?.accounts?.length,
-                    itemBuilder: (_, index) {
-                      return CardWidget(
-                          accountLabel: '${user?.accounts?[index].label}',
-                          balance: '${user?.accounts?[index].balance}');
-                    },
-                  ),
+                  child: user?.accounts?.length == 0
+                      ? Center(
+                          child: Text('You do not create account'),
+                        )
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          physics:
+                              const PageScrollPhysics(), // this for snapping
+                          itemCount: user?.accounts?.length,
+                          itemBuilder: (_, index) {
+                            return CardWidget(
+                                accountLabel: '${user?.accounts?[index].label}',
+                                balance: '${user?.accounts?[index].balance}');
+                          },
+                        ),
                 ),
               ),
             ],

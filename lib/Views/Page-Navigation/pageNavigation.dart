@@ -36,7 +36,7 @@ class _PageNavigationState extends State<PageNavigation> {
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.black,
           currentIndex: selectedPage,
-          backgroundColor: Colors.indigo,
+          backgroundColor: Colors.deepPurpleAccent,
           onTap: (index) {
             setState(
               () {

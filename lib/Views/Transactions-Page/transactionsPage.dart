@@ -103,7 +103,11 @@ class _TransactionsPageState extends State<TransactionsPage> {
               Expanded(
                 child: Container(
                   color: Colors.white,
-                  child: transactionCards(),
+                  child: transactionsList.isEmpty
+                      ? Center(
+                          child: Text('You do not have transactions'),
+                        )
+                      : transactionCards(),
                 ),
               )
             ],

@@ -60,13 +60,19 @@ class _TransferPageState extends State<TransferPage>
               unselectedLabelColor: Colors.grey,
               controller: controller,
               tabs: [
-                Text(
-                  'Send Money',
-                  style: TextStyle(fontSize: 20),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Send Money',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
-                Text(
-                  'Borrow Money',
-                  style: TextStyle(fontSize: 20),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Borrow Money',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ],
             )),
