@@ -33,14 +33,14 @@ class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
               child: Row(
                 children: [
                   Icon(
-                    Icons.savings,
-                    color: Colors.indigo,
+                    Icons.account_balance,
+                    color: Colors.deepPurpleAccent,
                     size: 180,
                   ),
                   Text(
                     'VERPARA',
                     style: TextStyle(
-                        color: Colors.indigo,
+                        color: Colors.deepPurpleAccent,
                         fontSize: 40,
                         fontWeight: FontWeight.bold),
                   ),
@@ -77,8 +77,8 @@ class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.indigo, width: 1),
+                              borderSide: BorderSide(
+                                  color: Colors.deepPurpleAccent, width: 1),
                             ),
                           ),
                         ),
@@ -99,13 +99,13 @@ class _OptionalDetailsPageState extends State<OptionalDetailsPage> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.indigo, width: 1),
+                              borderSide: BorderSide(
+                                  color: Colors.deepPurpleAccent, width: 1),
                             ),
                           ),
                         ),
                         CheckboxListTile(
-                          activeColor: Colors.indigo,
+                          activeColor: Colors.deepPurpleAccent,
                           value: isAccept,
                           onChanged: (value) {
                             setState(() {
@@ -151,7 +151,7 @@ below:
                                   text: 'License Agreement',
                                   style: TextStyle(
                                     fontSize: 16,
-                                    color: Colors.indigo,
+                                    color: Colors.deepPurpleAccent,
                                     fontWeight: FontWeight.w300,
                                     decoration: TextDecoration.underline,
                                   ),
@@ -178,7 +178,7 @@ below:
                           child: Text(
                             'Sign Up',
                             style: TextStyle(
-                                color: Colors.indigo,
+                                color: Colors.deepPurpleAccent,
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold),
                           ),
