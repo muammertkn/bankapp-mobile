@@ -3,15 +3,25 @@ import 'package:flutter/material.dart';
 class CardWidget extends StatelessWidget {
   final String accountLabel;
   final String balance;
+  final EdgeInsets? padding;
+  final bool? isSettingPage;
+  final VoidCallback? deleteFunction;
+  final VoidCallback? updateFunction;
   const CardWidget(
-      {Key? key, required this.accountLabel, required this.balance})
+      {Key? key,
+      required this.accountLabel,
+      required this.balance,
+      this.padding,
+      this.isSettingPage,
+      this.deleteFunction,
+      this.updateFunction})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: padding ?? EdgeInsets.all(30.0),
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(width: 2, color: Colors.black),
@@ -36,7 +46,7 @@ class CardWidget extends StatelessWidget {
               bottom: 30,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,17 +87,38 @@ class CardWidget extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 5.0,
+                          height: 8.0,
                         ),
-                        Text(balance,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold))
+                        Text(
+                          balance,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        )
                       ],
                     ),
                   ],
                 ),
+                Visibility(
+                  visible: isSettingPage ?? false,
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: deleteFunction,
+                        child: Text('Delete Account'),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(
+                        onPressed: updateFunction,
+                        child: Text('Change Label'),
+                      )
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.end,
+                  ),
+                )
               ],
             ),
           ),

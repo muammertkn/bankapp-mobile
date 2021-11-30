@@ -34,7 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       size: 180,
                     ),
                     Text(
-                      'VERPARA',
+                      'FakeBank',
                       style: TextStyle(
                           color: Colors.indigo,
                           fontSize: 40,

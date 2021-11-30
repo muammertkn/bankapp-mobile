@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mobile_app/Models/transactionModel.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
@@ -31,12 +32,19 @@ class _TransactionChartWidgetState extends State<TransactionChartWidget> {
       padding: EdgeInsets.all(5),
       child: Column(
         children: [
-          Expanded(
-            child: charts.BarChart(
-              series,
-              animate: true,
-            ),
-          )
+          widget.transactions.isEmpty
+              ? Center(
+                  child: Text(
+                    'You dont have transcations to show',
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                  ),
+                )
+              : Expanded(
+                  child: charts.BarChart(
+                    series,
+                    animate: true,
+                  ),
+                )
         ],
       ),
     );

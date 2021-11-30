@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mobile_app/Controllers/Token-Controllers/customhttpClient.dart';
 import 'package:mobile_app/Models/Account-Model/accountModel.dart';
 import 'package:http/http.dart' as http;
@@ -9,8 +10,10 @@ import 'package:mobile_app/Models/transactionModel.dart';
 import 'package:mobile_app/Utils/endpoints.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile_app/Views/Register-Pages/signInPage.dart';
 
 class AccountController {
+  FlutterSecureStorage storage = FlutterSecureStorage();
   var httpClient = CustomHttpClient();
   Future<User> getUser() async {
     String url = Endpoints.getFullUserData;
@@ -61,8 +64,7 @@ class AccountController {
           (json.decode(rawTransactions.body) as List)
               .map((e) => BankingAccount.fromJson(e))
               .toList();
-      print(accounts[0]);
-      return accounts;
+      return accounts.isNotEmpty ? accounts : [];
     } else {
       throw Exception('Error!');
     }
@@ -114,6 +116,91 @@ class AccountController {
       Get.snackbar('Error', 'Invalid parameters');
     } else {
       Get.snackbar('Error', 'Transfer account not found!');
+    }
+  }
+
+  Future<bool> updatePersonalInformation(
+      String? fullname, email, String? birthDate, String? phoneNumber) async {
+    String url = Endpoints.updateUser;
+    final rawUpdate = await httpClient.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        <String, dynamic>{
+          'fullname': fullname,
+          'email': email,
+          'birthDate': birthDate,
+          'phoneNumber': phoneNumber,
+        },
+      ),
+    );
+    if (rawUpdate.statusCode == 201) {
+      await storage.delete(key: 'access_token');
+
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> createAccount(String label) async {
+    String url = Endpoints.createAccount;
+    final rawUpdate = await httpClient.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        <String, dynamic>{
+          'label': label,
+        },
+      ),
+    );
+    if (rawUpdate.statusCode == 200 || rawUpdate.statusCode == 201) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> updateAccount(String oldLabel, newLabel) async {
+    String url = Endpoints.updateAccount;
+    final rawUpdate = await httpClient.put(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        <String, dynamic>{'oldLabel': oldLabel, 'newLabel': newLabel},
+      ),
+    );
+    if (rawUpdate.statusCode == 200 || rawUpdate.statusCode == 201) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> deleteAccount(String deleteLabel, transferToLabel) async {
+    String url = Endpoints.deleteAccount;
+    final rawUpdate = await httpClient.delete(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        <String, dynamic>{
+          'deleteLabel': deleteLabel,
+          'transferToLabel': transferToLabel,
+        },
+      ),
+    );
+    if (rawUpdate.statusCode == 200) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
