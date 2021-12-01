@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/Controllers/Account-Controller/accountController.dart';
-import 'package:mobile_app/Controllers/Authentication-Controller/authenticationController.dart';
 import 'package:mobile_app/Models/User-Models/userModel.dart';
 import 'package:mobile_app/Views/Settings-Page/settingsPage.dart';
 import 'package:mobile_app/Widgets/Account-Cards/cardWidget.dart';
@@ -100,6 +99,15 @@ class _HomePageState extends State<HomePage> {
                         },
                         icon: Icon(Icons.settings),
                         color: Colors.indigo,
+                        iconSize: 35,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          //! Add logout function
+                        },
+                        icon: Icon(Icons.logout_outlined),
+                        color: Colors.indigo,
+                        iconSize: 35,
                       ),
                     ],
                   ),
