@@ -170,7 +170,7 @@ below:
                                   phoneNumberController.text,
                                 ) ==
                                 true) {
-                              Get.to(PageNavigation());
+                              Get.offAll(PageNavigation());
                             } else {
                               Get.snackbar('ERROR', 'Something went wrong!');
                             }

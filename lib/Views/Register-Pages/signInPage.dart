@@ -110,7 +110,7 @@ class _SignInPageState extends State<SignInPage> {
                           if (await controller.signIn(emailController.text,
                                   passwordController.text) ==
                               true) {
-                            Get.to(PageNavigation());
+                            Get.offAll(PageNavigation());
                           } else {
                             Get.snackbar('ERROR', 'Something went wrong!');
                           }
