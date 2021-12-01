@@ -28,12 +28,15 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  bool isTL = true;
   String allEntities() {
     dynamic allBalance = 0;
     for (dynamic i = 0; i < user?.accounts?.length; i++) {
       allBalance = allBalance + user?.accounts?[i].balance;
     }
-    return allBalance.toString();
+    return isTL == true
+        ? allBalance.toString() + ' ₺'
+        : (allBalance / 15).floorToDouble().toString() + ' €';
   }
 
   @override
@@ -121,10 +124,26 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 25, top: 12),
-                    child: Text(
-                      'Total Balance',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Total Balance',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isTL = !isTL;
+                            });
+                          },
+                          icon: Icon(
+                              CupertinoIcons.arrow_right_arrow_left_circle),
+                          color: Colors.deepPurpleAccent,
+                          iconSize: 30,
+                        )
+                      ],
                     ),
                   ),
                 ),
