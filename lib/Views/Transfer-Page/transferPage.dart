@@ -50,31 +50,35 @@ class _TransferPageState extends State<TransferPage>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-            elevation: 8,
-            automaticallyImplyLeading: false,
-            bottom: TabBar(
-              labelColor: Colors.white,
-              labelStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              unselectedLabelColor: Colors.grey,
-              controller: controller,
-              tabs: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Send Money',
-                    style: TextStyle(fontSize: 20),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(90),
+          child: AppBar(
+              elevation: 1,
+              automaticallyImplyLeading: false,
+              bottom: TabBar(
+                labelColor: Colors.white,
+                labelStyle:
+                    TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                unselectedLabelColor: Colors.grey,
+                controller: controller,
+                tabs: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Send Money',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Borrow Money',
-                    style: TextStyle(fontSize: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Borrow Money',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
-                ),
-              ],
-            )),
+                ],
+              )),
+        ),
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: FutureBuilder(

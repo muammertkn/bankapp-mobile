@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircularProgressIndicator(
-                    color: Colors.indigo,
+                    color: Colors.deepPurpleAccent,
                     backgroundColor: Colors.white,
                   ),
                 ],
@@ -82,6 +82,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 height: 50,
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                         icon: Icon(Icons.settings),
-                        color: Colors.indigo,
+                        color: Colors.deepPurpleAccent,
                         iconSize: 35,
                       ),
                       IconButton(
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                           //! Add logout function
                         },
                         icon: Icon(Icons.logout_outlined),
-                        color: Colors.indigo,
+                        color: Colors.deepPurpleAccent,
                         iconSize: 35,
                       ),
                     ],
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(
-                height: 280,
+                height: 240,
                 width: double.infinity,
                 color: Colors.white,
                 child: Padding(
@@ -158,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                     width: 28,
                     height: 28,
                     decoration: BoxDecoration(
-                      color: Colors.indigo,
+                      color: Colors.deepPurpleAccent,
                       shape: BoxShape.circle,
                     ),
                     child: Padding(
@@ -214,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (_, index) {
                             return CardWidget(
                                 accountLabel: '${user?.accounts?[index].label}',
-                                balance: '${user?.accounts?[index].balance}');
+                                balance: '${user?.accounts?[index].balance} ₺');
                           },
                         ),
                 ),

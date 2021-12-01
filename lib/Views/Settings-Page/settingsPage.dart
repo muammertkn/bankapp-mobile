@@ -183,9 +183,9 @@ class _SettingsPageState extends State<SettingsPage>
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(85),
+          preferredSize: Size.fromHeight(90),
           child: AppBar(
-              elevation: 0,
+              elevation: 1,
               bottom: TabBar(
                 indicatorColor: Colors.white,
                 indicatorWeight: 3,
@@ -374,7 +374,7 @@ class _SettingsPageState extends State<SettingsPage>
                   isSettingPage: true,
                   padding: EdgeInsets.all(5),
                   accountLabel: '${widget.user.accounts?[index].label}',
-                  balance: '${widget.user.accounts?[index].balance}',
+                  balance: '${widget.user.accounts?[index].balance}  ₺',
                   deleteFunction: () {
                     deleteDisplayDialog(
                       context,
