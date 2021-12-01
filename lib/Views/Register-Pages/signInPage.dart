@@ -33,14 +33,14 @@ class _SignInPageState extends State<SignInPage> {
                 child: Column(
                   children: [
                     Icon(
-                      Icons.savings,
-                      color: Colors.indigo,
+                      Icons.account_balance,
+                      color: Colors.deepPurpleAccent,
                       size: 180,
                     ),
                     Text(
                       'FakeBank',
                       style: TextStyle(
-                          color: Colors.indigo,
+                          color: Colors.deepPurpleAccent,
                           fontSize: 40,
                           fontWeight: FontWeight.bold),
                     ),
@@ -110,7 +110,7 @@ class _SignInPageState extends State<SignInPage> {
                           if (await controller.signIn(emailController.text,
                                   passwordController.text) ==
                               true) {
-                            Get.to(PageNavigation());
+                            Get.offAll(PageNavigation());
                           } else {
                             Get.snackbar('ERROR', 'Something went wrong!');
                           }
@@ -118,7 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: Text(
                           'Sign In',
                           style: TextStyle(
-                              color: Colors.indigo,
+                              color: Colors.deepPurpleAccent,
                               fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
@@ -150,7 +150,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: Text(
                           'SIGN UP!',
                           style: TextStyle(
-                              color: Colors.indigo,
+                              color: Colors.deepPurpleAccent,
                               fontSize: 20,
                               fontWeight: FontWeight.bold),
                         ),

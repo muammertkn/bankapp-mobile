@@ -29,14 +29,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.savings,
-                      color: Colors.indigo,
+                      Icons.account_balance,
+                      color: Colors.deepPurpleAccent,
                       size: 180,
                     ),
                     Text(
                       'FakeBank',
                       style: TextStyle(
-                          color: Colors.indigo,
+                          color: Colors.deepPurpleAccent,
                           fontSize: 40,
                           fontWeight: FontWeight.bold),
                     ),
@@ -72,8 +72,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    BorderSide(color: Colors.indigo, width: 1),
+                                borderSide: BorderSide(
+                                    color: Colors.deepPurpleAccent, width: 1),
                               ),
                             ),
                           ),
@@ -93,8 +93,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    BorderSide(color: Colors.indigo, width: 1),
+                                borderSide: BorderSide(
+                                    color: Colors.deepPurpleAccent, width: 1),
                               ),
                             ),
                           ),
@@ -115,8 +115,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    BorderSide(color: Colors.indigo, width: 1),
+                                borderSide: BorderSide(
+                                    color: Colors.deepPurpleAccent, width: 1),
                               ),
                             ),
                           ),
@@ -133,8 +133,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    BorderSide(color: Colors.indigo, width: 1),
+                                borderSide: BorderSide(
+                                    color: Colors.deepPurpleAccent, width: 1),
                               ),
                             ),
                           ),
@@ -152,7 +152,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Text(
                               'Next',
                               style: TextStyle(
-                                  color: Colors.indigo,
+                                  color: Colors.deepPurpleAccent,
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -186,7 +186,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: Text(
                           'Sign In!',
                           style: TextStyle(
-                              color: Colors.indigo,
+                              color: Colors.deepPurpleAccent,
                               fontSize: 20,
                               fontWeight: FontWeight.bold),
                         ),

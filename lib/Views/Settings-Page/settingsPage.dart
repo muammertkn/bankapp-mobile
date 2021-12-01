@@ -73,49 +73,44 @@ class _SettingsPageState extends State<SettingsPage>
     );
   }
 
-  deleteDisplayDialog(BuildContext context) async {
+  deleteDisplayDialog(BuildContext context, int index) async {
     return showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Delete Account'),
-          content: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextFormField(
-                onFieldSubmitted: (val) {
-                  deleteAccountLabelController.text = val;
+        return SizedBox(
+          child: AlertDialog(
+            title: Text('Delete Account'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  onFieldSubmitted: (val) {
+                    transferAccountLabelController.text = val;
+                  },
+                  controller: transferAccountLabelController,
+                  textInputAction: TextInputAction.go,
+                  decoration: InputDecoration(hintText: 'Transfer Account'),
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              ElevatedButton(
+                child: Text('Delete'),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  if (await accountController.deleteAccount(
+                          widget.user.accounts![index].label,
+                          transferAccountLabelController.text) ==
+                      true) {
+                    Get.off(SignInPage());
+                  } else {
+                    Get.snackbar('Error', 'Something went wrong');
+                  }
                 },
-                controller: deleteAccountLabelController,
-                textInputAction: TextInputAction.go,
-                decoration: InputDecoration(hintText: 'Delete Account'),
-              ),
-              TextFormField(
-                onFieldSubmitted: (val) {
-                  transferAccountLabelController.text = val;
-                },
-                controller: transferAccountLabelController,
-                textInputAction: TextInputAction.go,
-                decoration: InputDecoration(hintText: 'Transfer Account'),
-              ),
+              )
             ],
           ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: Text('Delete'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                if (await accountController.deleteAccount(
-                        deleteAccountLabelController.text,
-                        transferAccountLabelController.text) ==
-                    true) {
-                  Get.off(SignInPage());
-                } else {
-                  Get.snackbar('Error', 'Something went wrong');
-                }
-              },
-            )
-          ],
         );
       },
     );
@@ -180,9 +175,9 @@ class _SettingsPageState extends State<SettingsPage>
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(85),
+          preferredSize: Size.fromHeight(90),
           child: AppBar(
-              elevation: 0,
+              elevation: 1,
               bottom: TabBar(
                 indicatorColor: Colors.white,
                 indicatorWeight: 3,
@@ -371,11 +366,9 @@ class _SettingsPageState extends State<SettingsPage>
                   isSettingPage: true,
                   padding: EdgeInsets.all(5),
                   accountLabel: '${widget.user.accounts?[index].label}',
-                  balance: '${widget.user.accounts?[index].balance}',
+                  balance: '${widget.user.accounts?[index].balance}  ₺',
                   deleteFunction: () {
-                    deleteDisplayDialog(
-                      context,
-                    );
+                    deleteDisplayDialog(context, index);
                   },
                   updateFunction: () {
                     updateDisplayDialog(context, index);

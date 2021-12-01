@@ -57,6 +57,22 @@ class Authentication {
     }
   }
 
+Future<bool> verifyUsersToken() async {
+    String url = Endpoints.verify;
+    var sentUserToken = await httpClient.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (sentUserToken.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   Future<bool> logOut() async {
     try {
       await storage.delete(key: 'access_token');
