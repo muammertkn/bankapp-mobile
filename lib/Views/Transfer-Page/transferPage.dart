@@ -52,7 +52,6 @@ class _TransferPageState extends State<TransferPage>
       child: Scaffold(
         appBar: AppBar(
             elevation: 8,
-            shape: Border.all(width: 3),
             automaticallyImplyLeading: false,
             bottom: TabBar(
               labelColor: Colors.white,
