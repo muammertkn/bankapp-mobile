@@ -73,7 +73,7 @@ class _SettingsPageState extends State<SettingsPage>
     );
   }
 
-  deleteDisplayDialog(BuildContext context) async {
+  deleteDisplayDialog(BuildContext context, int index) async {
     return showDialog(
       context: context,
       builder: (context) {
@@ -84,14 +84,6 @@ class _SettingsPageState extends State<SettingsPage>
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  onFieldSubmitted: (val) {
-                    deleteAccountLabelController.text = val;
-                  },
-                  controller: deleteAccountLabelController,
-                  textInputAction: TextInputAction.go,
-                  decoration: InputDecoration(hintText: 'Delete Account'),
-                ),
                 TextFormField(
                   onFieldSubmitted: (val) {
                     transferAccountLabelController.text = val;
@@ -108,7 +100,7 @@ class _SettingsPageState extends State<SettingsPage>
                 onPressed: () async {
                   Navigator.of(context).pop();
                   if (await accountController.deleteAccount(
-                          deleteAccountLabelController.text,
+                          widget.user.accounts![index].label,
                           transferAccountLabelController.text) ==
                       true) {
                     Get.off(SignInPage());
@@ -376,9 +368,7 @@ class _SettingsPageState extends State<SettingsPage>
                   accountLabel: '${widget.user.accounts?[index].label}',
                   balance: '${widget.user.accounts?[index].balance}  ₺',
                   deleteFunction: () {
-                    deleteDisplayDialog(
-                      context,
-                    );
+                    deleteDisplayDialog(context, index);
                   },
                   updateFunction: () {
                     updateDisplayDialog(context, index);
