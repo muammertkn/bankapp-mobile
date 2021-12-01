@@ -65,55 +65,79 @@ class _TransactionsPageState extends State<TransactionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: const EdgeInsets.only(
-            top: 12,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: 50,
-                width: double.infinity,
-                color: Colors.white,
-                child: Row(
+    return FutureBuilder(
+      future: controller.getTransactions(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return SafeArea(
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              resizeToAvoidBottomInset: false,
+              body: Padding(
+                padding: const EdgeInsets.only(
+                  top: 12,
+                ),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Transaction History',
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Transaction History',
+                              style: TextStyle(
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    SizedBox(
+                      width: double.infinity,
+                      child:
+                          TransactionChartWidget(transactions: transactionBar),
+                    ),
+                    Expanded(
+                      child: Container(
+                        color: Colors.white,
+                        child: transactionsList.isEmpty
+                            ? Center(
+                                child: Text('You do not have transactions'),
+                              )
+                            : transactionCards(),
+                      ),
+                    )
                   ],
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: TransactionChartWidget(transactions: transactionBar),
+            ),
+          );
+        }
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: SizedBox(
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(
+                    color: Colors.indigo,
+                    backgroundColor: Colors.white,
+                  ),
+                ],
               ),
-              Expanded(
-                child: Container(
-                  color: Colors.white,
-                  child: transactionsList.isEmpty
-                      ? Center(
-                          child: Text('You do not have transactions'),
-                        )
-                      : transactionCards(),
-                ),
-              )
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
