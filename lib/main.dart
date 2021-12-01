@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/Views/Register-Pages/signInPage.dart';
+import 'package:mobile_app/Views/Splash-Page/splashPage.dart';
 
 import 'Views/Page-Navigation/pageNavigation.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignInPage(),
+      home: SplashPage(),
       theme: ThemeProvider.theme,
     );
   }
