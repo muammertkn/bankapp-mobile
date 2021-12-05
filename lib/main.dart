@@ -1,12 +1,20 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app/Register-Pages/optionalPage.dart';
-import 'package:mobile_app/Register-Pages/signInPage.dart';
-import 'package:mobile_app/Register-Pages/signUpPage.dart';
-import 'package:mobile_app/home_page/home_page.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mobile_app/Views/Register-Pages/signInPage.dart';
+import 'package:mobile_app/Views/Splash-Page/splashPage.dart';
+
+import 'Views/Page-Navigation/pageNavigation.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+      /*  DevicePreview(
+      builder: (context) => MyApp(),
+      enabled: !kReleaseMode,
+    ), */
+      MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,17 +24,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OptionalDetailsPage(),
+      home: SplashPage(),
       theme: ThemeProvider.theme,
     );
   }
 }
 
-// This is a custom theme
 class ThemeProvider {
   const ThemeProvider();
 
   static ThemeData theme = ThemeData(
-    primarySwatch: Colors.indigo,
+    primarySwatch: Colors.deepPurple,
   );
 }
