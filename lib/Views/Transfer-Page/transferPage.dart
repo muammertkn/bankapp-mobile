@@ -34,7 +34,8 @@ class _TransferPageState extends State<TransferPage>
   void initState() {
     accountController.getAccounts().then((accounts) {
       bankAccounts.addAll(accounts);
-      print(bankAccounts);
+      print(bankAccounts[0]);
+      print(bankAccounts[1]);
     });
     super.initState();
     controller = TabController(length: 2, vsync: this);

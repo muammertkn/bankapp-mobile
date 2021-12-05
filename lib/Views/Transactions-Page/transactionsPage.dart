@@ -7,6 +7,7 @@ import 'package:mobile_app/Models/transactionModel.dart';
 import 'package:mobile_app/Widgets/Charts/transactionChart.dart';
 import 'package:mobile_app/Widgets/Transaction-Cards/transactionCardWidget.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:intl/intl.dart';
 
 class TransactionsPage extends StatefulWidget {
   const TransactionsPage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class TransactionsPage extends StatefulWidget {
 class _TransactionsPageState extends State<TransactionsPage> {
   Widget transactionCards() {
     return ListView.builder(
+      reverse: true,
       scrollDirection: Axis.vertical,
       itemCount: transactionsList.length,
       itemBuilder: (_, int index) {
@@ -27,7 +29,9 @@ class _TransactionsPageState extends State<TransactionsPage> {
           transactionPersonName:
               '${transactionsList[index].otherPerson?.fullname}',
           action: '${transactionsList[index].action}'.toUpperCase(),
-          transactionTime: transactionsList[index].date!,
+          transactionTime: DateFormat('yyyy-M-dd').format(
+            DateTime.parse(transactionsList[index].date!),
+          ),
         );
       },
     );
@@ -44,10 +48,12 @@ class _TransactionsPageState extends State<TransactionsPage> {
           transactionsList.addAll(transaction);
           List<TransactionBar> transactions = [
             ...List.generate(
-              2,
+              transactionsList.length < 2 ? transactionsList.length : 2,
               (index) {
                 return TransactionBar(
-                    transactionDate: transactionsList[index].date!,
+                    transactionDate: DateFormat('yyyy-MM-dd').format(
+                      DateTime.parse(transactionsList[index].date!),
+                    ),
                     barColor: transactionsList[index].action! == 'SENT'
                         ? charts.ColorUtil.fromDartColor(Colors.red)
                         : charts.ColorUtil.fromDartColor(Colors.indigo),
@@ -100,11 +106,11 @@ class _TransactionsPageState extends State<TransactionsPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    /*   SizedBox(
                       width: double.infinity,
                       child:
                           TransactionChartWidget(transactions: transactionBar),
-                    ),
+                    ), */
                     Expanded(
                       child: Container(
                         color: Colors.white,
