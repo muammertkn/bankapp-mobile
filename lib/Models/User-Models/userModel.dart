@@ -6,10 +6,12 @@ class User {
   final String? birthDate;
   final String? phoneNumber;
   final List<BankingAccount>? accounts;
+  final double? debt;
 
   User(
       {required this.email,
       required this.fullname,
+      required this.debt,
       this.birthDate,
       this.phoneNumber,
       this.accounts});
@@ -25,6 +27,7 @@ class User {
               .map((e) => BankingAccount.fromJson(e))
               .toList()
           : null,
+      debt: json['debt'].toDouble(),
     );
   }
 

@@ -32,14 +32,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool isTL = true;
+
   String allEntities() {
-    dynamic allBalance = 0;
-    for (dynamic i = 0; i < user?.accounts?.length; i++) {
-      allBalance = allBalance + user?.accounts?[i].balance;
+    double allBalance = 0;
+    for (int i = 0; i < user!.accounts!.length; i++) {
+      allBalance = allBalance + user!.accounts![i].balance;
     }
     return isTL == true
         ? allBalance.toString() + ' ₺'
         : (allBalance / 15).floorToDouble().toString() + ' €';
+  }
+
+  String? debt() {
+    return isTL == true
+        ? '${user?.debt} ₺'
+        : (user!.debt != null ? user!.debt! / 15 : user?.debt)!
+                .floorToDouble()
+                .toString() +
+            ' €';
   }
 
   @override
@@ -178,13 +188,24 @@ class _HomePageState extends State<HomePage> {
                           shape: BoxShape.circle,
                           color: Colors.white,
                         ),
-                        child: Center(
-                          child: Text(
-                            /* '12000' + ' ₺', */
-                            allEntities(),
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              /* '12000' + ' ₺', */
+                              allEntities(),
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              /* '12000' + ' ₺', */
+                              debt()!,
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red),
+                            ),
+                          ],
                         ),
                       ),
                     ),

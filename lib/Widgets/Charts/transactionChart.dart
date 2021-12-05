@@ -43,6 +43,13 @@ class _TransactionChartWidgetState extends State<TransactionChartWidget> {
                   child: charts.BarChart(
                     series,
                     animate: true,
+                    domainAxis: charts.OrdinalAxisSpec(
+                      renderSpec: charts.SmallTickRendererSpec(
+                        //
+                        // Rotation Here,
+                        labelRotation: 45,
+                      ),
+                    ),
                   ),
                 )
         ],
